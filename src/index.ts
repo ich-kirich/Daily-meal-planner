@@ -1,5 +1,21 @@
 import express from "express";
+import { StatusCodes } from "http-status-codes";
+import ErrorHandling from "./middleware/errorhandlingmiddleware";
+import router from "./routes/router";
+import ApiError from "./error/apiError";
 
 const app = express();
-const port = 5000;
-app.listen(port, () => console.log(`Running on port ${port}`));
+app.use(express.json());
+app.use("", router);
+app.use(ErrorHandling);
+const port = process.env.PORT || "5000";
+
+const startServer = async () => {
+  try {
+    app.listen(port, () => console.log(`Running on port ${port}`));
+  } catch (e) {
+    console.error(new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, e.message));
+  }
+};
+
+startServer();

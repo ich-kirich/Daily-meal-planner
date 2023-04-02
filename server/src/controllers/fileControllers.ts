@@ -9,10 +9,9 @@ class FileControllers {
   async getInf(req: Request, res: Response, next: NextFunction) {
     try {
       const filePath = path.join(__dirname, "../../", "data/FoodProducts.xml");
-      console.log(filePath);
       const xmlFile = fs.readFileSync(filePath, "utf8");
       const obj = parser.toJson(xmlFile, { object: true });
-      return res.json(obj);
+      return res.json(obj.Db);
     } catch (e) {
       return next(new ApiError(StatusCodes.BAD_REQUEST, e.message));
     }

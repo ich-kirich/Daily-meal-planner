@@ -17,7 +17,19 @@ export interface IAllMeals {
   Category: IProduct[];
 }
 
+export interface IMealsState {
+  [products: string]: Record<string, IAllMeals>;
+}
+
 export interface IChildernProps {
   children: React.ReactNode;
   className?: string;
+}
+
+export interface IMealsProps {
+  meals: IAllMeals;
+}
+
+export interface IMealsListProps {
+  meals: IMeal[];
 }

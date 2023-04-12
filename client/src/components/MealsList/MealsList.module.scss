@@ -1,0 +1,16 @@
+.wrapper__cart {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr 1fr 1fr;
+  flex: 1 0 75%;
+}
+
+.cart {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 200px;
+  flex-direction: column;
+  padding: 20px;
+  box-shadow: 0 -2px 4px 0 rgba(35, 31, 32, .05), 0 4px 8px 0 rgba(35, 31, 32, .1);
+}

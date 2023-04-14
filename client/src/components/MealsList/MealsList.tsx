@@ -13,11 +13,12 @@ function MealsList(props: IMealsListProps) {
     const productsJson = localStorage.getItem("products");
     if (productsJson) {
       const mealsPlan = JSON.parse(productsJson);
-      mealsPlan.push(meal);
+      const newMeal = { ...meal, category: "Завтрак" };
+      mealsPlan.push(newMeal);
       localStorage.setItem("products", JSON.stringify(mealsPlan));
     } else {
       const mealsPlan = [];
-      const newMeal = { ...meal, сategory: "Завтрак" };
+      const newMeal = { ...meal, category: "Завтрак" };
       mealsPlan.push(newMeal);
       localStorage.setItem("products", JSON.stringify(mealsPlan));
     }

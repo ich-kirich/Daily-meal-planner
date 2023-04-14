@@ -3,19 +3,30 @@ import { useEffect, useState } from "react";
 import shortid from "shortid";
 import { IPlanMeal } from "../../types/types";
 import DayPanel from "../DayPanel/DayPanel";
+import SelectCategory from "../SelectCategory/SelectCategory";
 import styles from "./PlanMeal.module.scss";
 
 function PlanMeal() {
   const [timeMeal, setTimeMeal] = useState("Завтрак");
-  const [meals, setMeals] = useState<IPlanMeal[]>(
-    (JSON.parse(localStorage.getItem("products")!) as IPlanMeal[]).filter(
-      (item) => item.category !== timeMeal,
-    ) || [],
+  let planMeals: IPlanMeal[] = [];
+  if (localStorage.getItem("products")) {
+    planMeals = JSON.parse(localStorage.getItem("products")!);
+  }
+  const [meals, setMeals] = useState<IPlanMeal[]>(planMeals);
+  const [viewMeals, setViewMeals] = useState<IPlanMeal[]>(
+    meals.filter((item: IPlanMeal) => item.category === timeMeal),
   );
   const deleteMeal = (meal: IPlanMeal) => {
-    const updateMeals: IPlanMeal[] = [...meals].filter((item) => item !== meal);
-    localStorage.setItem("products", JSON.stringify(updateMeals));
+    const updateMeals: IPlanMeal[] = [...meals].filter(
+      (item) => item.Name !== meal.Name,
+    );
     setMeals(updateMeals);
+    localStorage.setItem("products", JSON.stringify(updateMeals));
+    setViewMeals(
+      (JSON.parse(localStorage.getItem("products")!) as IPlanMeal[]).filter(
+        (item) => item.category === timeMeal,
+      ),
+    );
   };
   const minusGramms = (meal: IPlanMeal) => {
     if (Number(meal.Gramms) > 0) {
@@ -23,7 +34,6 @@ function PlanMeal() {
       if (Number(meal.Gramms) === 0) {
         deleteMeal(meal);
       } else {
-        console.log(Number(meal.Gramms) / 100);
         meal.Protein = String(
           (parseFloat(meal.Protein.replace(",", ".")) / 2).toFixed(2),
         );
@@ -34,8 +44,19 @@ function PlanMeal() {
           (parseFloat(meal.Carbs.replace(",", ".")) / 2).toFixed(2),
         );
         meal.Calories = String(Number(meal.Calories) / 2);
-        localStorage.setItem("products", JSON.stringify(meals));
+        const newMeals = meals.map((item) => {
+          if (item.Name === meal.Name) {
+            return { ...meal };
+          }
+          return item;
+        });
+        localStorage.setItem("products", JSON.stringify(newMeals));
         setMeals(JSON.parse(localStorage.getItem("products")!) as []);
+        setViewMeals(
+          (JSON.parse(localStorage.getItem("products")!) as IPlanMeal[]).filter(
+            (item) => item.category === timeMeal,
+          ),
+        );
       }
     }
   };
@@ -59,24 +80,49 @@ function PlanMeal() {
         parseFloat(meal.Carbs.replace(",", "."))
       ).toFixed(2),
     );
-    meal.Calories = String((Number(meal.Gramms) / 100) * Number(meal.Calories));
-    localStorage.setItem("products", JSON.stringify(meals));
+    meal.Calories = String(
+      (
+        (Number(meal.Gramms) / 100) *
+        parseFloat(meal.Calories.replace(",", "."))
+      ).toFixed(2),
+    );
+    const newMeals = meals.map((item) => {
+      if (item.Name === meal.Name) {
+        return { ...meal };
+      }
+      return item;
+    });
+    localStorage.setItem("products", JSON.stringify(newMeals));
     setMeals(JSON.parse(localStorage.getItem("products")!) as []);
+    setViewMeals(
+      (JSON.parse(localStorage.getItem("products")!) as IPlanMeal[]).filter(
+        (item) => item.category === timeMeal,
+      ),
+    );
   };
 
   useEffect(() => {
-    setMeals(
-      (JSON.parse(localStorage.getItem("products")!) as IPlanMeal[]).filter(
-        (item) => item.category !== timeMeal,
-      ),
-    );
+    if (localStorage.getItem("products")) {
+      setViewMeals(
+        (JSON.parse(localStorage.getItem("products")!) as IPlanMeal[]).filter(
+          (item) => item.category === timeMeal,
+        ),
+      );
+    }
   }, [timeMeal]);
   return (
-    <Box>
+    <Box className={styles.wrapper__plan}>
       <DayPanel setCategory={setTimeMeal} category={timeMeal} />
       <Box className={styles.wrapper__cart}>
-        {meals.map((item) => (
+        {viewMeals.map((item) => (
           <Box key={shortid.generate()} className={styles.cart}>
+            <SelectCategory
+              meal={item}
+              meals={meals}
+              setViewMeals={setViewMeals}
+              setMeals={setMeals}
+              timeMeal={timeMeal}
+            />
             <Typography variant="h6" component="h3">
               Name: {item.Name}
             </Typography>

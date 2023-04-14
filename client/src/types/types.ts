@@ -56,3 +56,11 @@ export interface IDayPanelProps {
   category: string;
   setCategory: Function;
 }
+
+export interface ISelectCategoryProp {
+  meals: IPlanMeal[];
+  setMeals: Function;
+  setViewMeals: Function;
+  meal: IPlanMeal;
+  timeMeal: string;
+}

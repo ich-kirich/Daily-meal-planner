@@ -100,3 +100,14 @@ export interface IMealCartControls {
   timeMeal: string;
   mealCart: IPlanMeal;
 }
+
+export interface IControlsInfUser {
+  setVisible: Function;
+}
+
+export interface IInformationUser {
+  activityUser: string;
+  ageUser: string;
+  growthUser: string;
+  weightUser: string;
+}

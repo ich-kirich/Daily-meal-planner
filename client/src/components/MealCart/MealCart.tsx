@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import shortid from "shortid";
-import { IMealCart, IPlanMeal } from "../../types/types";
+import { IMealCart } from "../../types/types";
 import MealCartControls from "../MealCartControls/MealCartControls";
 import MealCartInf from "../MealCartInf/MealCartInf";
 import SelectCategory from "../SelectCategory/SelectCategory";

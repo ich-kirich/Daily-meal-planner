@@ -1,10 +1,14 @@
 import { Box, Typography } from "@mui/material";
 import { ITotalStatistic } from "../../types/types";
-import calculateSubstances from "../../utils/utils";
+import { calculateDailyQuota, calculateSubstances } from "../../utils/utils";
 import styles from "./TotalStatistic.module.scss";
 
 function TotalStatistic(props: ITotalStatistic) {
   const { meals } = props;
+
+  const userInformation: number = calculateDailyQuota(
+    JSON.parse(localStorage.getItem("informationUser")!),
+  );
 
   const createTotalStats = () => {
     const totalStats = {
@@ -55,7 +59,10 @@ function TotalStatistic(props: ITotalStatistic) {
         Карбонаты: {stats.carbs}
       </Typography>
       <Typography variant="h6" component="h3">
-        Калории: {stats.calories}
+        Калории: {stats.calories} / {userInformation}
+      </Typography>
+      <Typography variant="h6" component="h3">
+        Суточная норма каллорий: {userInformation}
       </Typography>
     </Box>
   );

@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { IMealCartInf } from "../../types/types";
-import calculateSubstances from "../../utils/utils";
+import { calculateSubstances } from "../../utils/utils";
 
 function MealCartInf(props: IMealCartInf) {
   const { meal } = props;

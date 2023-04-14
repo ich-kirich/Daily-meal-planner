@@ -33,6 +33,7 @@ function AddMeal(props: IAddMealProp) {
     setMeals(addMeals);
     setVisible(!visible);
   };
+
   return (
     <Box className={styles.wrapper__meal}>
       <TextField

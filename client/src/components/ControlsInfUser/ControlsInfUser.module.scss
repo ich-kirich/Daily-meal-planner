@@ -1,0 +1,21 @@
+.wrapper__stats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.input__search {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: #fff;
+}
+
+.view__panel {
+  padding: 16.5px 14px;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  background-color: orange;
+}

@@ -28,8 +28,22 @@ export interface IChildernProps {
 
 export interface IMealsProps {
   meals: IAllMeals;
+  setMeals: Function;
 }
 
 export interface IMealsListProps {
   meals: IMeal[];
+  setMeals: Function;
+}
+
+export interface IModalComponentProps extends IChildernProps {
+  visible: boolean;
+  setVisible: Function;
+}
+
+export interface IAddMealProp {
+  meals: IAllMeals;
+  setMeals: Function;
+  visible: boolean;
+  setVisible: Function;
 }

@@ -23,7 +23,13 @@ function MainPage() {
       {isErrorAllCurr ? (
         <ViewError>{isErrorAllCurr}</ViewError>
       ) : (
-        <Box>{isAllCurrLoading ? <Loader /> : <Meals meals={meals} />}</Box>
+        <Box>
+          {isAllCurrLoading ? (
+            <Loader />
+          ) : (
+            <Meals meals={meals} setMeals={setMeals} />
+          )}
+        </Box>
       )}
     </Container>
   );

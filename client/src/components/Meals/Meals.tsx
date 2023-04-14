@@ -5,18 +5,21 @@ import {
   SelectChangeEvent,
   TextField,
 } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useEffect, useState, MouseEvent } from "react";
 import shortid from "shortid";
 import { IMeal, IMealsProps, IProduct } from "../../types/types";
+import AddMeal from "../AddMeal/AddMeal";
 import MealsList from "../MealsList/MealsList";
+import ModalComponent from "../ModalComponent/ModalComponent";
 import styles from "./Meals.module.scss";
 
 function Meals(props: IMealsProps) {
-  const { meals } = props;
+  const { meals, setMeals } = props;
   const [categoty, setCategory] = useState("");
   const [nameMeal, setNameMeal] = useState("");
   const [mealCategory, setMealCategory] = useState({} as IProduct);
   const [mealsList, setMealsList] = useState([] as IMeal[]);
+  const [visible, setVisible] = useState(false);
   const handleChange = (event: SelectChangeEvent) => {
     setCategory(event.target.value as string);
     const updateMeal = meals.Category.find(
@@ -29,6 +32,11 @@ function Meals(props: IMealsProps) {
     setMealsList(updateMealList);
   };
 
+  const viewAddListCurrencies = (e: MouseEvent) => {
+    e.stopPropagation();
+    setVisible(true);
+  };
+
   useEffect(() => {
     if (Object.keys(mealCategory).length !== 0) {
       const updateMeal = mealCategory.Product.filter((item) =>
@@ -37,6 +45,7 @@ function Meals(props: IMealsProps) {
       setMealsList(updateMeal);
     }
   }, [nameMeal]);
+
   return (
     <Box>
       <Box className={styles.control__panel}>
@@ -57,10 +66,21 @@ function Meals(props: IMealsProps) {
           value={nameMeal}
           fullWidth
           onChange={(e) => setNameMeal(e.target.value)}
-          className={styles.seach__input}
+          className={styles.currency__input}
         />
+        <Box onClick={viewAddListCurrencies} className={styles.view__panel}>
+          Add Meal
+        </Box>
+        <ModalComponent visible={visible} setVisible={setVisible}>
+          <AddMeal
+            meals={meals}
+            setMeals={setMeals}
+            visible={visible}
+            setVisible={setVisible}
+          />
+        </ModalComponent>
       </Box>
-      <MealsList key={shortid.generate()} meals={mealsList} />
+      <MealsList meals={mealsList} setMeals={setMealsList} />
     </Box>
   );
 }

@@ -5,6 +5,14 @@
   margin-bottom: 20px;
 }
 
+.view__panel {
+  padding: 16.5px 14px;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  background-color: orange;
+}
+
 .currency__input {
   display: flex;
   align-items: center;

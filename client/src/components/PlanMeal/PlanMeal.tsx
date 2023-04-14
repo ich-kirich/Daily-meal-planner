@@ -1,25 +1,17 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
+import { useState } from "react";
 import shortid from "shortid";
-import { IMeal, IMealsListProps } from "../../types/types";
-import styles from "./MealsList.module.scss";
+import { IMeal } from "../../types/types";
+import styles from "./PlanMeal.module.scss";
 
-function MealsList(props: IMealsListProps) {
-  const { meals, setMeals } = props;
+function PlanMeal() {
+  const [meals, setMeals] = useState<IMeal[]>(
+    (JSON.parse(localStorage.getItem("products")!) as []) || [],
+  );
   const deleteMeal = (meal: IMeal) => {
-    const updateMeals = [...meals].filter((item) => item !== meal);
+    const updateMeals: IMeal[] = [...meals].filter((item) => item !== meal);
+    localStorage.setItem("products", JSON.stringify(updateMeals));
     setMeals(updateMeals);
-  };
-  const addMeal = (meal: IMeal) => {
-    const productsJson = localStorage.getItem("products");
-    if (productsJson) {
-      const mealsPlan = JSON.parse(productsJson);
-      mealsPlan.push(meal);
-      localStorage.setItem("products", JSON.stringify(mealsPlan));
-    } else {
-      const mealsPlan = [];
-      mealsPlan.push(meal);
-      localStorage.setItem("products", JSON.stringify(mealsPlan));
-    }
   };
   return (
     <Box className={styles.wrapper__cart}>
@@ -43,9 +35,6 @@ function MealsList(props: IMealsListProps) {
           <Typography variant="h6" component="h3">
             Calories: {item.Calories}
           </Typography>
-          <Button type="button" onClick={() => addMeal(item)}>
-            Добавить в план
-          </Button>
           <Button type="button" onClick={() => deleteMeal(item)}>
             Удалить
           </Button>
@@ -55,4 +44,4 @@ function MealsList(props: IMealsListProps) {
   );
 }
 
-export default MealsList;
+export default PlanMeal;

@@ -1,53 +1,61 @@
 import { Box, Typography } from "@mui/material";
 import { ITotalStatistic } from "../../types/types";
+import calculateSubstances from "../../utils/utils";
 import styles from "./TotalStatistic.module.scss";
 
 function TotalStatistic(props: ITotalStatistic) {
   const { meals } = props;
+
   const createTotalStats = () => {
     const totalStats = {
-      gramms: 0,
-      protein: 0,
-      fats: 0,
-      carbs: 0,
-      calories: 0,
+      gramms: 0.0,
+      protein: 0.0,
+      fats: 0.0,
+      carbs: 0.0,
+      calories: 0.0,
     };
     meals.map((item) => {
       totalStats.gramms += Number(item.Gramms);
-      totalStats.protein += Number(
-        Number(parseFloat(item.Protein.replace(",", "."))).toFixed(2),
-      );
-      totalStats.fats += Number(
-        Number(parseFloat(item.Fats.replace(",", "."))).toFixed(2),
-      );
-      totalStats.carbs += Number(
-        Number(parseFloat(item.Carbs.replace(",", "."))).toFixed(2),
-      );
-      totalStats.calories += Number(
-        Number(parseFloat(item.Calories.replace(",", "."))).toFixed(2),
-      );
+      totalStats.protein =
+        Math.round(
+          (totalStats.protein + calculateSubstances(item, item.Protein)) * 100,
+        ) / 100;
+      totalStats.fats =
+        Math.round(
+          (totalStats.fats + calculateSubstances(item, item.Fats)) * 100,
+        ) / 100;
+      totalStats.carbs =
+        Math.round(
+          (totalStats.carbs + calculateSubstances(item, item.Carbs)) * 100,
+        ) / 100;
+      totalStats.calories =
+        Math.round(
+          (totalStats.calories + calculateSubstances(item, item.Calories)) *
+            100,
+        ) / 100;
       return item;
     });
-    console.log(totalStats);
     return totalStats;
   };
+
   const stats = createTotalStats();
+
   return (
     <Box className={styles.wrapper__total}>
       <Typography variant="h6" component="h3">
-        Gramms: {stats.gramms}
+        Граммы: {stats.gramms}
       </Typography>
       <Typography variant="h6" component="h3">
-        Protein: {stats.protein}
+        Протеин: {stats.protein}
       </Typography>
       <Typography variant="h6" component="h3">
-        Fats: {stats.fats}
+        Жиры: {stats.fats}
       </Typography>
       <Typography variant="h6" component="h3">
-        Carbs: {stats.carbs}
+        Карбонаты: {stats.carbs}
       </Typography>
       <Typography variant="h6" component="h3">
-        Calories: {stats.calories}
+        Калории: {stats.calories}
       </Typography>
     </Box>
   );

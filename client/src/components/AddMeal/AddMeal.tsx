@@ -7,7 +7,7 @@ function AddMeal(props: IAddMealProp) {
   const { meals, setMeals, visible, setVisible } = props;
   const [category, setCategory] = useState("");
   const [nameMeal, setNameMeal] = useState("");
-  const [gramms, setGramms] = useState("");
+  const [gramms, setGramms] = useState("100");
   const [protein, setProtein] = useState("");
   const [fats, setFats] = useState("");
   const [carbs, setCarbs] = useState("");
@@ -37,7 +37,7 @@ function AddMeal(props: IAddMealProp) {
     <Box className={styles.wrapper__meal}>
       <TextField
         id="category"
-        label="Enter a name of category"
+        label="Введите название категории"
         variant="filled"
         size="medium"
         type="search"
@@ -48,7 +48,7 @@ function AddMeal(props: IAddMealProp) {
       />
       <TextField
         id="nameMeal"
-        label="Enter a name of category"
+        label="Введите название продукта"
         variant="filled"
         size="medium"
         type="search"
@@ -58,19 +58,8 @@ function AddMeal(props: IAddMealProp) {
         className={styles.meal__input}
       />
       <TextField
-        id="gramms"
-        label="Enter count of gramms"
-        variant="filled"
-        size="medium"
-        type="search"
-        value={gramms}
-        fullWidth
-        onChange={(e) => setGramms(e.target.value)}
-        className={styles.meal__input}
-      />
-      <TextField
         id="protein"
-        label="Enter count of protein"
+        label="Введите количество протеина на 100 грамм"
         variant="filled"
         size="medium"
         type="search"
@@ -81,7 +70,7 @@ function AddMeal(props: IAddMealProp) {
       />
       <TextField
         id="fats"
-        label="Enter count of fats"
+        label="Введите количество жиров на 100 грамм"
         variant="filled"
         size="medium"
         type="search"
@@ -92,7 +81,7 @@ function AddMeal(props: IAddMealProp) {
       />
       <TextField
         id="carbs"
-        label="Enter count of carbs"
+        label="Введите количество карбонатов на 100 грамм"
         variant="filled"
         size="medium"
         type="search"
@@ -103,7 +92,7 @@ function AddMeal(props: IAddMealProp) {
       />
       <TextField
         id="calories"
-        label="Enter count of calories"
+        label="Введите количество калорий на 100 грамм"
         variant="filled"
         size="medium"
         type="search"
@@ -113,7 +102,7 @@ function AddMeal(props: IAddMealProp) {
         className={styles.meal__input}
       />
       <Box onClick={addMeal} className={styles.view__panel}>
-        Add Meal
+        Добавить продукт
       </Box>
     </Box>
   );

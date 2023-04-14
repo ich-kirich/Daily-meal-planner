@@ -28,22 +28,22 @@ function MealsList(props: IMealsListProps) {
       {meals.map((item) => (
         <Box key={shortid.generate()} className={styles.cart}>
           <Typography variant="h6" component="h3">
-            Name: {item.Name}
+            Название: {item.Name}
           </Typography>
           <Typography variant="h6" component="h3">
-            Gramms: {item.Gramms}
+            Граммы: {item.Gramms}
           </Typography>
           <Typography variant="h6" component="h3">
-            Protein: {item.Protein}
+            Протеин: {item.Protein}
           </Typography>
           <Typography variant="h6" component="h3">
-            Fats: {item.Fats}
+            Жиры: {item.Fats}
           </Typography>
           <Typography variant="h6" component="h3">
-            Carbs: {item.Carbs}
+            Карбонаты: {item.Carbs}
           </Typography>
           <Typography variant="h6" component="h3">
-            Calories: {item.Calories}
+            Калории: {item.Calories}
           </Typography>
           <Button type="button" onClick={() => addMeal(item)}>
             Добавить в план

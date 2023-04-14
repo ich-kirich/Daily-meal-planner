@@ -68,3 +68,35 @@ export interface ISelectCategoryProp {
 export interface ITotalStatistic {
   meals: IPlanMeal[];
 }
+
+export interface IMainPagePanel {
+  meals: IAllMeals;
+  setMeals: Function;
+  setMealsList: Function;
+}
+
+export interface IControlsMainPanel {
+  meals: IAllMeals;
+  setMealsList: Function;
+  setVisible: Function;
+}
+
+export interface IMealCart {
+  meals: IPlanMeal[];
+  viewMeals: IPlanMeal[];
+  setMeals: Function;
+  setViewMeals: Function;
+  timeMeal: string;
+}
+
+export interface IMealCartInf {
+  meal: IPlanMeal;
+}
+
+export interface IMealCartControls {
+  meals: IPlanMeal[];
+  setMeals: Function;
+  setViewMeals: Function;
+  timeMeal: string;
+  mealCart: IPlanMeal;
+}

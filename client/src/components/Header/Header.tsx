@@ -9,12 +9,12 @@ function Header() {
         <Toolbar className={styles.topBar_wrapper}>
           <Typography variant="h6" component="h1">
             <Link to="/" className={styles.topBar__link}>
-              Daily Meal Planner
+              Ежедневный планировщик питания
             </Link>
           </Typography>
           <Typography variant="h6" component="h1">
             <Link to="/plan" className={styles.topBar__link}>
-              Meal plan
+              Ежедневный план питания
             </Link>
           </Typography>
         </Toolbar>

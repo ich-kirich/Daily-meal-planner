@@ -17,7 +17,8 @@ function MealsList(props: IMealsListProps) {
       localStorage.setItem("products", JSON.stringify(mealsPlan));
     } else {
       const mealsPlan = [];
-      mealsPlan.push(meal);
+      const newMeal = { ...meal, сategory: "Завтрак" };
+      mealsPlan.push(newMeal);
       localStorage.setItem("products", JSON.stringify(mealsPlan));
     }
   };

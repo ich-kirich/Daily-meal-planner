@@ -12,6 +12,11 @@ function Header() {
               Daily Meal Planner
             </Link>
           </Typography>
+          <Typography variant="h6" component="h1">
+            <Link to="/plan" className={styles.topBar__link}>
+              Meal plan
+            </Link>
+          </Typography>
         </Toolbar>
       </Container>
     </AppBar>

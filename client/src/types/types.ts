@@ -47,3 +47,12 @@ export interface IAddMealProp {
   visible: boolean;
   setVisible: Function;
 }
+
+export interface IPlanMeal extends IMeal {
+  category: string;
+}
+
+export interface IDayPanelProps {
+  category: string;
+  setCategory: Function;
+}

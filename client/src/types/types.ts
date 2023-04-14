@@ -64,3 +64,7 @@ export interface ISelectCategoryProp {
   meal: IPlanMeal;
   timeMeal: string;
 }
+
+export interface ITotalStatistic {
+  meals: IPlanMeal[];
+}

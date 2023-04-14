@@ -4,6 +4,7 @@ import shortid from "shortid";
 import { IPlanMeal } from "../../types/types";
 import DayPanel from "../DayPanel/DayPanel";
 import SelectCategory from "../SelectCategory/SelectCategory";
+import TotalStatistic from "../TotalStatistic/TotalStatistic";
 import styles from "./PlanMeal.module.scss";
 
 function PlanMeal() {
@@ -153,6 +154,7 @@ function PlanMeal() {
           </Box>
         ))}
       </Box>
+      <TotalStatistic meals={meals} />
     </Box>
   );
 }

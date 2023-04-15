@@ -1,12 +1,12 @@
 import { Box } from "@mui/material";
 import shortid from "shortid";
-import { IMealCart } from "../../types/types";
+import { IMealCartProps } from "../../types/types";
 import MealCartControls from "../MealCartControls/MealCartControls";
 import MealCartInf from "../MealCartInf/MealCartInf";
 import SelectCategory from "../SelectCategory/SelectCategory";
 import styles from "./MealCart.module.scss";
 
-function MealCart(props: IMealCart) {
+function MealCart(props: IMealCartProps) {
   const { meals, setMeals, setViewMeals, timeMeal, viewMeals } = props;
 
   return (

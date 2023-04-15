@@ -7,10 +7,10 @@ import {
 } from "@mui/material";
 import { useEffect, useState, MouseEvent } from "react";
 import shortid from "shortid";
-import { IControlsMainPanel, IProduct } from "../../types/types";
+import { IControlsMainPanelProps, IProduct } from "../../types/types";
 import styles from "./ControlsMainPanel.module.scss";
 
-function ControlsMainPanel(props: IControlsMainPanel) {
+function ControlsMainPanel(props: IControlsMainPanelProps) {
   const { meals, setMealsList, setVisible } = props;
   const [nameMeal, setNameMeal] = useState("");
   const [mealCategory, setMealCategory] = useState({} as IProduct);

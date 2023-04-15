@@ -1,9 +1,9 @@
 import { Box, TextField } from "@mui/material";
 import { useState } from "react";
-import { IAddMealProp } from "../../types/types";
+import { IAddMealProps } from "../../types/types";
 import styles from "./AddMeal.module.scss";
 
-function AddMeal(props: IAddMealProp) {
+function AddMeal(props: IAddMealProps) {
   const { meals, setMeals, visible, setVisible } = props;
   const [category, setCategory] = useState("");
   const [nameMeal, setNameMeal] = useState("");

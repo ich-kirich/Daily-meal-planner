@@ -21,6 +21,34 @@ export interface IMealsState {
   [products: string]: Record<string, IAllMeals>;
 }
 
+export interface ITotalStats {
+  gramms: number;
+  protein: number;
+  fats: number;
+  carbs: number;
+  calories: number;
+}
+
+export interface IMealResult extends ITotalStats {
+  normalCalories: number;
+}
+
+export interface IExportPlan {
+  meals: IPlanMeal[];
+  totalInf: IMealResult;
+}
+
+export interface IInformationUser {
+  activityUser: string;
+  ageUser: string;
+  growthUser: string;
+  weightUser: string;
+}
+
+export interface IPlanMeal extends IMeal {
+  category: string;
+}
+
 export interface IChildernProps {
   children: React.ReactNode;
   className?: string;
@@ -41,15 +69,11 @@ export interface IModalComponentProps extends IChildernProps {
   setVisible: Function;
 }
 
-export interface IAddMealProp {
+export interface IAddMealProps {
   meals: IAllMeals;
   setMeals: Function;
   visible: boolean;
   setVisible: Function;
-}
-
-export interface IPlanMeal extends IMeal {
-  category: string;
 }
 
 export interface IDayPanelProps {
@@ -57,7 +81,7 @@ export interface IDayPanelProps {
   setCategory: Function;
 }
 
-export interface ISelectCategoryProp {
+export interface ISelectCategoryProps {
   meals: IPlanMeal[];
   setMeals: Function;
   setViewMeals: Function;
@@ -65,23 +89,23 @@ export interface ISelectCategoryProp {
   timeMeal: string;
 }
 
-export interface ITotalStatistic {
+export interface ITotalStatisticProps {
   meals: IPlanMeal[];
 }
 
-export interface IMainPagePanel {
+export interface IMainPagePanelProps {
   meals: IAllMeals;
   setMeals: Function;
   setMealsList: Function;
 }
 
-export interface IControlsMainPanel {
+export interface IControlsMainPanelProps {
   meals: IAllMeals;
   setMealsList: Function;
   setVisible: Function;
 }
 
-export interface IMealCart {
+export interface IMealCartProps {
   meals: IPlanMeal[];
   viewMeals: IPlanMeal[];
   setMeals: Function;
@@ -89,11 +113,11 @@ export interface IMealCart {
   timeMeal: string;
 }
 
-export interface IMealCartInf {
+export interface IMealCartInfProps {
   meal: IPlanMeal;
 }
 
-export interface IMealCartControls {
+export interface IMealCartControlsProps {
   meals: IPlanMeal[];
   setMeals: Function;
   setViewMeals: Function;
@@ -101,13 +125,6 @@ export interface IMealCartControls {
   mealCart: IPlanMeal;
 }
 
-export interface IControlsInfUser {
+export interface IControlsInfUserProps {
   setVisible: Function;
-}
-
-export interface IInformationUser {
-  activityUser: string;
-  ageUser: string;
-  growthUser: string;
-  weightUser: string;
 }

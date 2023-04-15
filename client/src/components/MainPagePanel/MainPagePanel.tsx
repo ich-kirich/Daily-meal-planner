@@ -1,11 +1,11 @@
 import { Box } from "@mui/material";
 import { useState } from "react";
-import { IMainPagePanel } from "../../types/types";
+import { IMainPagePanelProps } from "../../types/types";
 import AddMeal from "../AddMeal/AddMeal";
 import ControlsMainPanel from "../ControlsMainPanel/ControlsMainPanel";
 import ModalComponent from "../ModalComponent/ModalComponent";
 
-function MainPagePanel(props: IMainPagePanel) {
+function MainPagePanel(props: IMainPagePanelProps) {
   const { meals, setMeals, setMealsList } = props;
   const [visible, setVisible] = useState(false);
 

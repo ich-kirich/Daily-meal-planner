@@ -1,14 +1,27 @@
 import { Box, Typography } from "@mui/material";
-import { ITotalStatistic } from "../../types/types";
+import {
+  IMealResult,
+  ITotalStatisticProps,
+  ITotalStats,
+} from "../../types/types";
 import { calculateDailyQuota, calculateSubstances } from "../../utils/utils";
+import DownloadPlan from "../DownloadPlan/DownloadPlan";
 import styles from "./TotalStatistic.module.scss";
 
-function TotalStatistic(props: ITotalStatistic) {
+function TotalStatistic(props: ITotalStatisticProps) {
   const { meals } = props;
 
   const userInformation: number = calculateDailyQuota(
     JSON.parse(localStorage.getItem("informationUser")!),
   );
+
+  const saveMealTotal = (stats: ITotalStats) => {
+    const mealResult: IMealResult = {
+      ...stats,
+      normalCalories: userInformation,
+    };
+    localStorage.setItem("mealTotalResult", JSON.stringify(mealResult));
+  };
 
   const createTotalStats = () => {
     const totalStats = {
@@ -39,6 +52,7 @@ function TotalStatistic(props: ITotalStatistic) {
         ) / 100;
       return item;
     });
+    saveMealTotal(totalStats);
     return totalStats;
   };
 
@@ -64,6 +78,9 @@ function TotalStatistic(props: ITotalStatistic) {
       <Typography variant="h6" component="h3">
         Суточная норма каллорий: {userInformation}
       </Typography>
+      <Box className={styles.download__button}>
+        <DownloadPlan />
+      </Box>
     </Box>
   );
 }

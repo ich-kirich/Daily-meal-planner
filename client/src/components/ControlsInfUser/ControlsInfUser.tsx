@@ -8,11 +8,11 @@ import {
 } from "@mui/material";
 import { useState, MouseEvent } from "react";
 import shortid from "shortid";
-import { IControlsInfUser } from "../../types/types";
+import { IControlsInfUserProps } from "../../types/types";
 import { hasEmptyFields } from "../../utils/utils";
 import styles from "./ControlsInfUser.module.scss";
 
-function ControlsInfUser(props: IControlsInfUser) {
+function ControlsInfUser(props: IControlsInfUserProps) {
   const { setVisible } = props;
   const [weight, setWeight] = useState("");
   const [growth, setGrowth] = useState("");

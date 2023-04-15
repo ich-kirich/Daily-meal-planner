@@ -1,8 +1,8 @@
 import { Box, MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import shortid from "shortid";
-import { IPlanMeal, ISelectCategoryProp } from "../../types/types";
+import { IPlanMeal, ISelectCategoryProps } from "../../types/types";
 
-function SelectCategory(props: ISelectCategoryProp) {
+function SelectCategory(props: ISelectCategoryProps) {
   const { meal, meals, setMeals, timeMeal, setViewMeals } = props;
   const time = ["Завтрак", "Обед", "Ужин"];
   const handleChange = (event: SelectChangeEvent) => {

@@ -1,8 +1,8 @@
 import { Box, Button } from "@mui/material";
-import { IMealCartControls, IPlanMeal } from "../../types/types";
+import { IMealCartControlsProps, IPlanMeal } from "../../types/types";
 import styles from "./MealCartControls.module.scss";
 
-function MealCartControls(props: IMealCartControls) {
+function MealCartControls(props: IMealCartControlsProps) {
   const { meals, setMeals, setViewMeals, timeMeal, mealCart } = props;
 
   const deleteMeal = (meal: IPlanMeal) => {

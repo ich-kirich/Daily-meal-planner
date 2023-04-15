@@ -5,7 +5,7 @@ import Header from "./components/Header/Header";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <StyledEngineProvider injectFirst>
         <Header />
         <AppRouter />

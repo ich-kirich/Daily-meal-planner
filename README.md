@@ -24,5 +24,3 @@ npm install
 - Backend: ExpressJS, NodeJs, Typescript, Eslint, Nodemon, Eslint, Prettier, Postman, xml2json
 - Frontend: React, Typescript, Material UI, SCSS, Eslint, Prettier, Axios, Normalize CSS
 ***
-## This is my [result](https://ich-kirich.github.io/Daily-meal-planner/)
-- Long loading time is possible, because the server starts up at the request (this is the cost of free hosting)
